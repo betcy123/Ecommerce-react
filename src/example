@@ -1,0 +1,63 @@
+import React, {Component} from 'react';
+
+
+class Register extends Component {
+    getInput =(e)=> {
+        console.log(e.target)
+        this.inputVal = e.target.value;
+        console.log('val>', this.inputVal)
+    }
+    changeURL=(e)=> {
+       alert('hi')
+    }
+    render() {
+        return(
+            <div class="box">
+            <h1>Sign Up</h1>
+                <p>PLease filll the form</p>
+                <div class="form-group col-xs-6">
+                <input style={{
+                    paddingRight:'90px',
+                    borderRadius: '4px',
+                    height: '30px'
+                }} onChange={this.getInput} placeholder='Enter your Name'/>
+                </div>
+                <div class="form-group col-xs-6">
+                <input style={{
+                    paddingRight:'90px',
+                    borderRadius: '4px',
+                    height: '30px',
+                    marginTop:"20px"
+                }} onChange={this.getInput} placeholder='Enter your Phone Number'/>
+                </div>
+                <div class="form-group col-xs-6">
+                <input style={{
+                    paddingRight:'90px',
+                    borderRadius: '4px',
+                    height: '30px',
+                    marginTop:"20px"
+                }} onChange={this.getInput} placeholder='Enter your Email'/>
+                </div>
+                <div class="form-group col-xs-6">
+                <input style={{
+                    paddingRight:'90px',
+                    borderRadius: '4px',
+                    height: '30px',
+                    marginTop:"20px"
+                }} onChange={this.getInput} placeholder='Enter your Password'/>
+                </div>
+                <div class="form-group col-xs-6">
+                <input style={{
+                    paddingRight:'90px',
+                    borderRadius: '4px',
+                    height: '30px',
+                    marginTop:"20px"
+                }} onChange={this.getInput} placeholder='Repeat'/>
+                </div>
+                <h4>We will send you a conformation message</h4>
+                <button Link to={'/home'} onClick={this.changeURL}>Register</button>
+            </div>
+        )
+    }
+}
+export default Register;
