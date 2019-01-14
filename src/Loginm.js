@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles/MuiThemeProvider';
+import AppBar from '@material-ui/core/AppBar';
+import RaisedButton from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { Link } from 'react-router-dom'
 import $ from 'jquery';
 import axios from 'axios';
-class Login extends Component {
+
+// const theme = createMuiTheme();
+class Loginm extends Component {
     constructor(props){
        super(props);
        this.state = {
@@ -16,10 +19,10 @@ class Login extends Component {
    }
    render() {
        return(
-         <MuiThemeProvider>
+          // <MuiThemeProvider theme={theme}>
             <div>
              <AppBar title="Login Here" />
-               <div className="login">
+               <div className="loginm">
                    <TextField hintText="Enter your Email" id="email"
                      floatingLabelText="Email *"
                      onChange = {(event,newValue) => this.setState({email:newValue})} />
@@ -31,7 +34,7 @@ class Login extends Component {
                    <RaisedButton label="Login" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
                </div>
             </div>
-           </MuiThemeProvider>
+           // </MuiThemeProvider>
 
        )
    }
@@ -47,9 +50,10 @@ class Login extends Component {
         })
         .then(function (response) {
           alert("sucess");
-          window.location.assign("http://www.yoururl.com");
+          window.location.assign("/home");
         })
         .catch(function (error) {
+          alert("sorry try again")
         });
 
       }
@@ -58,4 +62,4 @@ class Login extends Component {
 const style = {
 margin: 50,
 }
-export default Login;
+export default Loginm;

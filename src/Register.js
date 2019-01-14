@@ -1,11 +1,23 @@
 import React, {Component} from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import Login from './Login'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles/MuiThemeProvider';
+import AppBar from '@material-ui/core/AppBar';
+import { Link } from 'react-router-dom'
+import RaisedButton from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import $ from 'jquery';
+import './Register.css'
 import axios from 'axios';
+import blue from '@material-ui/core/colors/blue';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: 'purple',
+    secondary: 'green',
+  },
+  status: {
+    danger: 'orange',
+  },
+});
 
 class Register extends Component {
     constructor(props){
@@ -21,7 +33,7 @@ class Register extends Component {
    }
     render() {
         return(
-          <MuiThemeProvider>
+          <MuiThemeProvider theme={theme}>
              <div>
               <AppBar title="Register Here" />
                 <div className="register">
@@ -46,10 +58,10 @@ class Register extends Component {
                       onChange = {(event,newValue) => this.setState({cpassword:newValue})} />
                     <br/>
                     <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+                    <Link to="/login">already have an account? </Link>
                 </div>
              </div>
-             <a href="#" onClick={()=>{return (<Login />)}}> Already have an account ?</a>
-          </MuiThemeProvider>
+            </MuiThemeProvider>
         )
     }
          handleClick(event) {
@@ -76,7 +88,7 @@ class Register extends Component {
                 }
               })
               .then(function (response) {
-                alert("sucess");
+                alert("sucessfully logged ");
 
               })
               .catch(function (error) {

@@ -1,0 +1,56 @@
+import React, {Component} from 'react';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import {AppBar, Tabs, Tab} from '@material-ui/core'
+import RaisedButton from '@material-ui/core/RaisedButton';
+import { Link } from 'react-router-dom';
+import $ from 'jquery';
+import axios from 'axios';
+import Drawer from '@material-ui/core/Drawer';
+import './styles.css';
+import MenuItem from '@material-ui/core/MenuItem';
+const styles = {
+  navBar: {'top': AppBar.height}
+}
+class Home extends Component {
+    constructor(){
+       super();
+     this.state = {open: false};
+
+     }
+   }
+   handleToggle = () => this.setState({open: !this.state.open});
+   render() {
+       return(
+         <MuiThemeProvider>
+            <div>
+            <AppBar
+            zDepth={10}
+            title="show list"
+            iconElementLeft={<FontIcon onClick={this.handleToggle} className="material-icons">menu</FontIcon>}
+             />
+              <Tabs>
+              <Tab label="&nbsp;Item 1&nbsp;" />
+              <Tab label="&nbsp;Item 2&nbsp;" />
+              <Tab label="&nbsp;Item 3&nbsp;" />
+              <Tab label="&nbsp;Item 4&nbsp;" />
+             </Tabs>
+           </AppBar>
+           <Drawer
+            open={this.state.open}
+            width={200}
+            containerStyle={styles.navBar}>
+            <MenuItem>Home</MenuItem>
+            <MenuItem>My Cart</MenuItem>
+            <MenuItem>My Wish</MenuItem>
+            <MenuItem>About</MenuItem>
+            <MenuItem>Contact Us</MenuItem>
+          </Drawer>
+            </div>
+           </MuiThemeProvider>
+       );
+   }
+
+ }
+
+
+export default Home;
