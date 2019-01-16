@@ -12,8 +12,8 @@ const { SubMenu } = Menu;
 const { Header,Footer, Content, Sider } = Layout;
 
  class Home1 extends Component {
-    constructor(props) {
-    super(props);
+    constructor() {
+    super();
     this.state = {
       name:'',
       price:'',
@@ -46,27 +46,8 @@ const { Header,Footer, Content, Sider } = Layout;
     this.setState({ data: productItems })
   }));
 }
-
-  // componentDidMount() {
-  //   fetch('http://172.16.53.30:3000/showproducts').then(response => {
-  //     console.log("hdffgtfhgh");
-  //       for (var i in response) {
-  //       var name = response[i].name;
-  //       console.log(name);
-  //       var price = response[i].price;
-  //       var id =response[i].id;
-  //       this.setState({
-  //         name: response[i].name,
-  //         price: response[i].price
-  //       })
-  //
-  //     }
-  //                   // Do something with the results
-  //            });
-  //   }
     shouldComponentUpdate() {
-return true;
-}
+      return true;}
     render() {
       console.log(this.state.data);
     return (
@@ -79,7 +60,7 @@ return true;
             defaultSelectedKeys={['2']}
             style={{ lineHeight: '64px' }}
           >
-            <Menu.Item key="1">Home</Menu.Item>
+            <Menu.Item key="1">User</Menu.Item>
             <Menu.Item key="2">My Cart</Menu.Item>
             <Menu.Item key="3">Wish List</Menu.Item>
           </Menu>
@@ -92,7 +73,7 @@ return true;
               defaultOpenKeys={['sub1']}
               style={{ height: '100%', borderRight: 0 }}
             >
-              <SubMenu key="sub1" title={<span><Icon type="user" />Home</span>}>
+              <SubMenu key="sub1" title={<span><Icon type="user" />User</span>}>
                 <Menu.Item key="1">Mycart</Menu.Item>
                 <Menu.Item key="2">WishLISt</Menu.Item>
               </SubMenu>
@@ -104,16 +85,16 @@ return true;
             </Menu>
           </Sider>
           <Layout style={{ padding: '0 24px 24px' }}>
-              <Content style={{
+           <Content style={{
               background: '#C0C0C0', padding: 24, margin: 0, minHeight: 750,
             }}
             >
-            <Carousel autoplay>
-            {
-              this.state.data.map((item) => (<div><h1><a href="http://localhost:3000/product:id {item.id}">
-              {item.name}</a></h1><br></br><h3>{item.price}</h3></div>))
-            }
-            </Carousel>
+              <Carousel autoplay>
+                {
+                  this.state.data.map((item) => <div><h1><a href={"products/"+item.id}>{item.name}</a></h1><br></br>
+                  <h3> {item.price}</h3></div>)
+                }
+              </Carousel>
             </Content>
             </Layout>
           </Layout>

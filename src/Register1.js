@@ -75,10 +75,10 @@ class Register1 extends Component {
                 <Input placeholder=" Email *" id="email"  style={{ width: 400 }} />
                 <br/>
                 <br/>
-                <Input placeholder=" Password  *" id="password"  style={{ width: 400 }} />
+                <Input placeholder=" Password  *" type="password" id="password"  style={{ width: 400 }} />
                 <br/>
                 <br/>
-                <Input placeholder=" conform-Password  *" id="cpassword"  style={{ width: 400 }} />
+                <Input placeholder=" conform-Password  *" type="password" id="cpassword"  style={{ width: 400 }} />
                 <br/>
                 <br/>
                 <br/>

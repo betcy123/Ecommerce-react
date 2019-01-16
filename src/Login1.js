@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Input } from 'antd';
 import { Button, Radio} from 'antd';
 import ReactDOM from 'react-dom';
+import Storage from 'local-session-storage';
 import { Layout, Menu, Breadcrumb, Icon,} from 'antd/es';
 const { SubMenu } = Menu;
 const { Header,Footer, Content, Sider } = Layout;
@@ -14,7 +15,10 @@ class Login1 extends Component {
        super(props);
        this.state = {
          email:'',
-         password:''
+         password:'',
+         id: '',
+         data: []
+
 
      }
    }
@@ -62,7 +66,7 @@ class Login1 extends Component {
                <Input placeholder=" Email *" id="email"  style={{ width: 400 }} />
                <br/>
                <br/>
-               <Input placeholder=" Password  *" id="password"  style={{ width: 400 }} />
+               <Input placeholder=" Password  *" type="password"id="password"  style={{ width: 400 }} />
                <br/>
                <br/>
                <br/>
@@ -81,19 +85,42 @@ class Login1 extends Component {
 
       var uemail = $("#email").val();
       var pass = $("#password").val();
+     //  this.setState((state)=>{
+     //    return{[uemail]:pass}
+     // })
+     //  Storage.Local.set('objname',{[uemail]:pass})
           axios.get('http://172.16.53.30:3000/login', {
             params:{
             email: uemail,
             psw: pass
           }
         })
-        .then(function (response) {
-          alert("sucess");
-          window.location.assign("/home1");
-        })
-        .catch(function (error) {
-          alert("sorry try again")
-        });
+        .then(res => {
+          console.log(res.status,res);
+          console.log(res.data.id);
+          var userid= res.data.id;
+          const userid = window.userid;
+          if(res.data.status == 200){
+             window.location.assign("/home1");
+             this.setState((state)=>{
+             return{[uemail]:userid}
+         })
+         Storage.Local.set('objname',{[uemail]:userid})
+          }
+          else {
+            {
+              alert("error")
+            }
+          }
+           // var productIt = (res.data)
+           // console.log("<<<<<<", productIt.status)
+           // var response1=(productIt.response)
+           // console.log("<<<<<<",response1)
+           // if(response1 ==  )
+           // window.location.assign("/home1")
+         }).catch(() => {
+            alert("error")
+          })
 
       }
   }
