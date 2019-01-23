@@ -61,9 +61,11 @@ class Products extends Component {
                defaultSelectedKeys={['2']}
                style={{ lineHeight: '64px' }}
              >
+               <Menu.Item key="4"><a href= "/home"><Icon type="left-circle" theme="filled" /></a></Menu.Item>
                <Menu.Item key="1"><a href="/home1">User</a></Menu.Item>
                <Menu.Item key="2">My Cart</Menu.Item>
                <Menu.Item key="3">Wish List</Menu.Item>
+               <Menu.Item key="9" onClick={(event) => this.logout(event)}>Logout</Menu.Item>
              </Menu>
            </Header>
            <Layout>
@@ -76,14 +78,13 @@ class Products extends Component {
                >
                  <SubMenu key="sub1" title={<span><Icon type="user" />User</span>}>
                    <Menu.Item key="1"><a href="/home1">Home</a></Menu.Item>
-                   <Menu.Item key="2">Mycart</Menu.Item>
-                   <Menu.Item key="3">WishList</Menu.Item>
-
-                 </SubMenu>
+                   <Menu.Item key="2"><a href="/mycart">Mycart</a></Menu.Item>
+                   <Menu.Item key="3"><a href="/wishlist">WishList</a></Menu.Item>
+                                    </SubMenu>
                  <SubMenu key="sub2" title={<span><Icon type="laptop" />Site</span>}>
-                   <Menu.Item key="3">Help</Menu.Item>
-                   <Menu.Item key="4">About</Menu.Item>
-                   <Menu.Item key="5">Contact US</Menu.Item>
+                   <Menu.Item key="3">Help{(event) => this.help(event)}</Menu.Item>
+                   <Menu.Item key="4" ><a href="/about">About</a></Menu.Item>
+                   <Menu.Item key="5"><a href="/contact">Contact US</a></Menu.Item>
                  </SubMenu>
                </Menu>
              </Sider>
@@ -93,10 +94,16 @@ class Products extends Component {
                }}>
                 <div>
                  <h1>Product Details</h1>
-                 <h2>Name: {this.state.data.name}</h2>
-                 <h2>Category: {this.state.data.category}</h2>
-                 <h2>Price: {this.state.data.price} </h2>
-                  <h2>Description: {this.state.data.description}</h2>
+                 <h2><img src={this.state.data.imageurl}/></h2>
+                 <h2>Name: &nbsp;&nbsp;&nbsp;{this.state.data.name}</h2>
+                 <h2>Category:&nbsp;&nbsp; {this.state.data.category}</h2>
+                 <h2>Price: &nbsp;&nbsp;&nbsp; {this.state.data.price} </h2>
+                 <h2>Description: &nbsp;&nbsp;&nbsp; {this.state.data.description}</h2>
+                </div>
+                <div>
+                <button onClick={(event) => this.Addcart(event)}>Add to Cart</button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onClick={(event) => this.Wishlist(event)}>Wishlist</button>
                 </div>
               </Content>
              </Layout>
@@ -106,6 +113,55 @@ class Products extends Component {
 
    }
 
+   Addcart()
+   {
+    var ids=localStorage.getItem('id');
+     var id = window.location.href.split('/')[window.location.href.split('/').length - 1];
+    console.log(ids);
+    axios.get('http://172.16.53.30:3000/addtocart', {
+      params:{
+      user_id: ids,
+      product_id: id,
+
+
+    }
+  })
+    .then(res => {
+      console.log(res.status,res);
+      console.log(res.data.response);
+        if(res.data.status == 200){
+          alert("sucess");
+        }
+      });
+
+
+   }
+  Wishlist()
+  {
+    var ids=localStorage.getItem('id');
+    var id = window.location.href.split('/')[window.location.href.split('/').length - 1];
+    console.log(ids);
+    axios.get('http://172.16.53.30:3000/wishlist', {
+      params:{
+        user_id: ids,
+        product_id: id,
+
+    }
+    })
+    .then(res => {
+      console.log(res.status,res);
+      console.log(res.data.response);
+        if(res.data.status == 200){
+          alert("sucess");
+        }
+      });
+  }
+  logout(event)
+  {
+
+     Storage.Local.remove('objname')
+     window.location.href="/login1";
+  }
   }
 
 export default Products;

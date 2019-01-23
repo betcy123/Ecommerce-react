@@ -33,9 +33,6 @@ class Register1 extends Component {
                 defaultSelectedKeys={['2']}
                 style={{ lineHeight: '64px' }}
               >
-                <Menu.Item key="1">Home</Menu.Item>
-                <Menu.Item key="2">My Cart</Menu.Item>
-                <Menu.Item key="3">Wish List</Menu.Item>
               </Menu>
             </Header>
             <Layout>
@@ -46,14 +43,10 @@ class Register1 extends Component {
                   defaultOpenKeys={['sub1']}
                   style={{ height: '100%', borderRight: 0 }}
                 >
-                  <SubMenu key="sub1" title={<span><Icon type="user" />Home</span>}>
-                    <Menu.Item key="1">Mycart</Menu.Item>
-                    <Menu.Item key="2">WishLISt</Menu.Item>
-                  </SubMenu>
                   <SubMenu key="sub2" title={<span><Icon type="laptop" />Site</span>}>
-                    <Menu.Item key="3">Help</Menu.Item>
-                    <Menu.Item key="4">About</Menu.Item>
-                    <Menu.Item key="5">Contact US</Menu.Item>
+                    <Menu.Item key="3"><a href="/help">Help</a></Menu.Item>
+                    <Menu.Item key="4"><a href="/about">About</a></Menu.Item>
+                    <Menu.Item key="5"><a href="/contact">Contact US</a></Menu.Item>
                   </SubMenu>
                 </Menu>
               </Sider>
@@ -62,6 +55,7 @@ class Register1 extends Component {
                   background: '#fff', padding: 24, margin: 0, minHeight: 750,
                 }}
                 >
+                <h1>Create an account....<Icon type="usergroup-add" /></h1>
                 <br/>
                 <br/>
                 <br/>
@@ -118,6 +112,7 @@ class Register1 extends Component {
              })
              .then(function (response) {
                alert("sucessfully logged ");
+               window.location.assign("http://localhost:3000/login1");
 
              })
              .catch(function (error) {

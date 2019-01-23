@@ -7,6 +7,11 @@ import Home1 from './Home1';
 import Register1 from './Register1';
 import Login1 from './Login1';
 import Products from './Products';
+import Help from './Help';
+import About from './About';
+import Contact  from './Contact';
+import Mycart  from './Mycart';
+import Wishlist from'./Wishlist';
 class App extends Component {
   render() {
     return (
@@ -17,6 +22,11 @@ class App extends Component {
               <Route path="/login1" component={Login1} />
               <Route path="/home1" component={Home1} />
               <Route path="/products" component={Products}/>
+              <Route path="/help" component={Help}/>
+              <Route path="/about" component={About}/>
+              <Route path="/contact" component={ Contact}/>
+              <Route path="/mycart" component={ Mycart}/>
+              <Route path="/wishlist" component={ Wishlist}/>
             </div>
           </Router>
         </div>

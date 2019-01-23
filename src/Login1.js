@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Input } from 'antd';
 import { Button, Radio} from 'antd';
 import ReactDOM from 'react-dom';
-import Storage from 'local-session-storage';
 import { Layout, Menu, Breadcrumb, Icon,} from 'antd/es';
 const { SubMenu } = Menu;
 const { Header,Footer, Content, Sider } = Layout;
@@ -58,7 +57,7 @@ class Login1 extends Component {
                }}
                >
                <br/>
-               <h2>Login Here...</h2>
+               <h1>Login Here...</h1>
                <br/>
                <br/>
                <br/>
@@ -98,14 +97,11 @@ class Login1 extends Component {
         .then(res => {
           console.log(res.status,res);
           console.log(res.data.id);
-          var userid= res.data.id;
-          const userid = window.userid;
+          // Let userid = res.data.id;
+          // console.log(userid);
           if(res.data.status == 200){
-             window.location.assign("/home1");
-             this.setState((state)=>{
-             return{[uemail]:userid}
-         })
-         Storage.Local.set('objname',{[uemail]:userid})
+             localStorage.setItem('id',res.data.id);
+             window.location.assign("http://localhost:3000/home1");
           }
           else {
             {
