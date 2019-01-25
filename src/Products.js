@@ -61,7 +61,7 @@ class Products extends Component {
                defaultSelectedKeys={['2']}
                style={{ lineHeight: '64px' }}
              >
-               <Menu.Item key="4"><a href= "/home"><Icon type="left-circle" theme="filled" /></a></Menu.Item>
+               <Menu.Item key="4"><a href= "/home1"><Icon type="left-circle" theme="filled" /></a></Menu.Item>
                <Menu.Item key="1"><a href="/home1">User</a></Menu.Item>
                <Menu.Item key="2">My Cart</Menu.Item>
                <Menu.Item key="3">Wish List</Menu.Item>

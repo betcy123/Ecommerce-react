@@ -38,7 +38,7 @@ class About extends Component {
                 defaultSelectedKeys={['2']}
                 style={{ lineHeight: '64px' }}
               >
-                <Menu.Item key="1"><a href="/home">Home</a></Menu.Item>
+                <Menu.Item key="1"><a href="/home1">Home</a></Menu.Item>
                 <Menu.Item key="2">My Cart</Menu.Item>
                 <Menu.Item key="3">Wish List</Menu.Item>
                 <Menu.Item key="9" onClick={(event) => this.logout(event)}>Logout</Menu.Item>
@@ -53,8 +53,8 @@ class About extends Component {
                   style={{ height: '100%', borderRight: 0 }}
                 >
                   <SubMenu key="sub1" title={<span><Icon type="user" />Home</span>}>
-                    <Menu.Item key="1">Mycart</Menu.Item>
-                    <Menu.Item key="2">WishLISt</Menu.Item>
+                    <Menu.Item key="1"><a href="/mycart">Mycart</a></Menu.Item>
+                    <Menu.Item key="2"><a href="/wishlist">WishLISt</a></Menu.Item>
                   </SubMenu>
                   <SubMenu key="sub2" title={<span><Icon type="laptop" />Site</span>}>
                     <Menu.Item key="3"><a href="/help">Help</a></Menu.Item>
@@ -85,7 +85,7 @@ class About extends Component {
        }
        logout(event)
        {
-        
+
           window.location.href="/login1";
        }
 

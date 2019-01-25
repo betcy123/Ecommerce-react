@@ -57,7 +57,7 @@ class Login1 extends Component {
                }}
                >
                <br/>
-               <h1>Login Here...</h1>
+               <h1>Login Here...<Icon type="user" /></h1>
                <br/>
                <br/>
                <br/>

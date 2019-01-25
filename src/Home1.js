@@ -64,8 +64,8 @@ const { Header,Footer, Content, Sider } = Layout;
             style={{ lineHeight: '64px' }}
           >
             <Menu.Item key="1">User</Menu.Item>
-            <Menu.Item key="2">My Cart</Menu.Item>
-            <Menu.Item key="3">Wish List</Menu.Item>
+            <Menu.Item key="2"><a href="/mycart">My Cart</a></Menu.Item>
+            <Menu.Item key="3"><a href="/wishlist">Wish List</a></Menu.Item>
             <Menu.Item key="9" onClick={(event) => this.logout(event)}>Logout</Menu.Item>
           </Menu>
         </Header>
@@ -78,8 +78,8 @@ const { Header,Footer, Content, Sider } = Layout;
               style={{ height: '100%', borderRight: 0 }}
             >
               <SubMenu key="sub1" title={<span><Icon type="user" />User</span>}>
-                <Menu.Item key="1">Mycart</Menu.Item>
-                <Menu.Item key="2">WishLISt</Menu.Item>
+                <Menu.Item key="1"><a href="/mycart">Mycart</a></Menu.Item>
+                <Menu.Item key="2"><a href="/wishlist">WishLISt</a></Menu.Item>
               </SubMenu>
               <SubMenu key="sub2" title={<span><Icon type="laptop" />Site</span>}>
                 <Menu.Item key="3"onClick={(event) => this.help(event)}>Help</Menu.Item>
