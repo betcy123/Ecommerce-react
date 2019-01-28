@@ -2,56 +2,45 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import 'antd/dist/antd.css';
 import axios from 'axios';
+import './style.css';
 import { Input } from 'antd';
 import { Button, Radio} from 'antd';
 import ReactDOM from 'react-dom';
 import { Collapse } from 'antd';
-import './style.css';
-import { Layout, Menu, Breadcrumb, Icon,} from 'antd/es';
+import { Layout, Menu, Breadcrumb, Icon,Dropdown,} from 'antd/es';
 const { SubMenu } = Menu;
 const { Header,Footer, Content, Sider } = Layout;
 
-class Wishlist extends Component {
+  const customPanelStyle = {
+    background: '#f7f7f7',
+    borderRadius: 4,
+    marginBottom: 24,
+    border: 0,
+    overflow: 'hidden',
+  };
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <a target="_blank">kerala</a>
+      </Menu.Item>
+      <Menu.Item>
+        <a target="_blank" >karnataka</a>
+      </Menu.Item>
+      <Menu.Item>
+        <a target="_blank">tamilnadu</a>
+      </Menu.Item>
+    </Menu>
+  );
+
+class Order extends Component {
     constructor(props){
        super(props);
        this.state = {
-           name:'',
-           price:'',
-           id: '',
-           wishListed: false,
-           data: []
+
+
      }
    }
-   componentDidMount() {
-     var user_id=localStorage.getItem("id");
-     var queryString = "http://172.16.53.30:3000/mywish/" +user_id;
-     fetch(queryString).then(response =>
-       response.json().then(data => ({
-           data1: data,
-           status: response.status
 
-       })
-
-   ).then(res => {
-     var productIt=[];
-     var n=res.data1.data.length;
-     for(var i=0;i<n;i++ )
-     {
-     console.log("length",n);
-     console.log(res.status,res);
-     productIt[i] = (res.data1.data[i]);
-     console.log("<<<<<<", productIt[i][0]);
-     this.setState({ data: productIt[i][0] })
-             }
-       }));
-     }
-     shouldComponentUpdate() {
-       return true;
-     }
-
-     addWishList = () => {
-       this.setState({ wishListed: !this.state.wishListed })
-     }
     render() {
         return(
           <Layout>
@@ -64,8 +53,8 @@ class Wishlist extends Component {
                 style={{ lineHeight: '64px' }}
               >
                 <Menu.Item key="1"><a href="/home1">Home</a></Menu.Item>
-                <Menu.Item key="2"><a href="/mycart">My Cart</a></Menu.Item>
-                <Menu.Item key="3"><a href="/wishlist">Wish List</a></Menu.Item>
+                <Menu.Item key="2">My Cart</Menu.Item>
+                <Menu.Item key="3">Wish List</Menu.Item>
                 <Menu.Item key="9" onClick={(event) => this.logout(event)}>Logout</Menu.Item>
               </Menu>
             </Header>
@@ -93,17 +82,28 @@ class Wishlist extends Component {
                   background: '#fff', padding: 24, margin: 0, minHeight: 750,align: 'left',
                 }}
                 >
-                 <h1 className="hcenter">Your WishList</h1>
-                  <div className= "data">
-                  <h2><img src={this.state.data.imageurl}/></h2>
-                  <h2>Name: &nbsp;&nbsp;&nbsp;{this.state.data.name}</h2>
-                  <h2 className="category">Category:&nbsp;&nbsp; {this.state.data.category}</h2>
-                  <h2>Price: {this.state.data.price} </h2>
-                  <button onClick={(event) => this.order(event)}><Icon type="check-circle" theme="filled"/>&nbsp;&nbsp;add to cart</button>
-                   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                  <button onClick={(event) => this.delete(event)}><Icon type="delete" theme="filled"/> &nbsp;&nbsp; Delete</button>
-                 </div>
-                 </Content>
+                <h1>your order </h1>
+                <div className="order">
+                  <h3>Add your address </h3>
+                  <Input placeholder=" Enter your name *" id="name" required style={{ width: 400 }} />
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <Input placeholder=" 10 digit phonenumber*" id="number" required style={{ width: 400 }} />
+                  <br/><br/>
+                  <Input placeholder=" Pincode*" id="pin" required style={{ width: 400 }} />
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <Input placeholder="Locality*" id="locality" required style={{ width: 400 }} />
+                  <br/><br/>
+                  <Input placeholder="Address Area*" id="area" required style={{ width: 815, height:100 }} />
+                  <br/>
+                  <br/>
+                  <Input placeholder="city/district/state*" id="city" required style={{ width: 400 }} />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                   <Dropdown overlay={menu} placement="bottomRight">
+                    <Button>State</Button>
+                   </Dropdown>
+                  </div>
+
+                </Content>
               </Layout>
             </Layout>
             </Layout>);
@@ -113,15 +113,8 @@ class Wishlist extends Component {
 
           window.location.href="/login1";
        }
-       order(event)
-       {
-         window.location="/mycart";
-       }
-      // delete(event)
-      // {
-      //
-      // }
+
       }
 
 
-export default Wishlist;
+export default Order;

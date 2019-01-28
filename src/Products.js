@@ -116,7 +116,7 @@ class Products extends Component {
    Addcart()
    {
     var ids=localStorage.getItem('id');
-     var id = window.location.href.split('/')[window.location.href.split('/').length - 1];
+    var id = window.location.href.split('/')[window.location.href.split('/').length - 1];
     console.log(ids);
     axios.get('http://172.16.53.30:3000/addtocart', {
       params:{

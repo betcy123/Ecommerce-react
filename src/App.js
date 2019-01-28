@@ -12,6 +12,7 @@ import About from './About';
 import Contact  from './Contact';
 import Mycart  from './Mycart';
 import Wishlist from'./Wishlist';
+import Order from './Order';
 class App extends Component {
   render() {
     return (
@@ -27,6 +28,7 @@ class App extends Component {
               <Route path="/contact" component={ Contact}/>
               <Route path="/mycart" component={ Mycart}/>
               <Route path="/wishlist" component={ Wishlist}/>
+              <Route path="/order" component={ Order}/>
             </div>
           </Router>
         </div>

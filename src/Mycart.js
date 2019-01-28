@@ -7,6 +7,7 @@ import { Button, Radio} from 'antd';
 import ReactDOM from 'react-dom';
 import { Collapse } from 'antd';
 import './style.css';
+import { Carousel } from 'antd';
 import { Layout, Menu, Breadcrumb, Icon,} from 'antd/es';
 const { SubMenu } = Menu;
 const { Header,Footer, Content, Sider } = Layout;
@@ -33,7 +34,7 @@ class Mycart extends Component {
        })
 
    ).then(res => {
-     var productIt=[];
+     const productIt=[];
      var n=res.data1.data.length;
      for(var i=0;i<n;i++ )
      {
@@ -42,7 +43,7 @@ class Mycart extends Component {
      productIt[i] = (res.data1.data[i]);
      console.log("<<<<<<", productIt[i][0]);
      this.setState({ data: productIt[i][0] })
-             }
+      }
        }));
      }
      shouldComponentUpdate() {
@@ -100,22 +101,30 @@ class Mycart extends Component {
                   <h2>Name: &nbsp;&nbsp;&nbsp;{this.state.data.name}</h2>
                   <h2 className="category">Category:&nbsp;&nbsp; {this.state.data.category}</h2>
                   <h2>Price: &nbsp;&nbsp;&nbsp; {this.state.data.price} </h2>
-                  <button onClick={(event) => this.delete(event)}>Delete</button>
+                  <button onClick={(event) => this.order(event)}><Icon type="check-circle" theme="filled" /> &nbsp;&nbsp;Place Order</button>
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button onClick={(event) => this.delete(event)}><Icon type="delete" theme="filled"/>Delete</button>
                  </div>
-                 </Content>
+               </Content>
               </Layout>
             </Layout>
-            </Layout>);
+            </Layout>
+          );
        }
        logout(event)
        {
 
           window.location.href="/login1";
        }
-       delete(event)
+       order(event)
        {
-        
+         window.location="/order";
        }
+       // delete(event)
+       // {
+       //  var ids=localStorage.getItem('id');
+       //  console.log("id of user",ids);
+       // }
 
       }
 

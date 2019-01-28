@@ -99,6 +99,11 @@ const { Header,Footer, Content, Sider } = Layout;
                 <h3> {item.price}</h3></div>)
                 }
               </Carousel>
+              <br/>
+              {
+              this.state.data.map((item) => <div className='display'><img src={item.imageurl}></img><h1><a href={"products/"+item.id}>{item.name}</a></h1>
+              <h3> {item.price}</h3></div>)
+              }
             </Content>
             </Layout>
           </Layout>
