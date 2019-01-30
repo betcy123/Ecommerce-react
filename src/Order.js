@@ -10,8 +10,8 @@ import { Collapse } from 'antd';
 import { Layout, Menu, Breadcrumb, Icon,Dropdown,} from 'antd/es';
 const { SubMenu } = Menu;
 const { Header,Footer, Content, Sider } = Layout;
-
-  const customPanelStyle = {
+const RadioGroup = Radio.Group;
+const customPanelStyle = {
     background: '#f7f7f7',
     borderRadius: 4,
     marginBottom: 24,
@@ -96,12 +96,27 @@ class Order extends Component {
                   <Input placeholder="Address Area*" id="area" required style={{ width: 815, height:100 }} />
                   <br/>
                   <br/>
-                  <Input placeholder="city/district/state*" id="city" required style={{ width: 400 }} />
+                  <Input placeholder="city/district/state*" id="city" required style={{ width: 600 }} />
                     &nbsp;&nbsp;&nbsp;&nbsp;
                    <Dropdown overlay={menu} placement="bottomRight">
-                    <Button>State</Button>
+                    <Button required style={{ width: 200 }}>State</Button>
                    </Dropdown>
+                   <br/>
+                   <br/>
+                   <RadioGroup name="radiogroup" defaultValue={1}>
+                   <h4>address type</h4>
+                    <Radio value={1}>Home(all day delivery)</Radio>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Radio value={2}>Work(delivery between(10 Am-5 pm))</Radio>
+                    </RadioGroup>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Button type="primary" onClick="save">Save and Deliver. Here</Button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <Button type="dashed">Cancel</Button>
                   </div>
+
 
                 </Content>
               </Layout>
@@ -113,7 +128,20 @@ class Order extends Component {
 
           window.location.href="/login1";
        }
+        save(event)
+        {
+          var ids=localStorage.getItem('id');
+          var id = window.location.href.split('/')[window.location.href.split('/').length - 1];
+          console.log(ids);
+          axios.get('http://172.16.53.30:3000/order', {
+            params:{
+            user_id: ids,
+            product_id: id,
 
+
+          }
+        })
+        }
       }
 
 

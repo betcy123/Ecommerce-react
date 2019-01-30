@@ -40,6 +40,7 @@ class Wishlist extends Component {
      console.log("length",n);
      console.log(res.status,res);
      productIt[i] = (res.data1.data[i]);
+     console.log("productid",productIt[i].id);
      console.log("<<<<<<", productIt[i][0]);
      this.setState({ data: productIt[i][0] })
              }
@@ -115,7 +116,24 @@ class Wishlist extends Component {
        }
        order(event)
        {
-         window.location="/mycart";
+         var ids=localStorage.getItem('id');
+         console.log(ids);
+         axios.get('http://172.16.53.30:3000/addtocart', {
+           params:{
+           user_id: ids,
+           // product_id: id,
+
+
+         }
+       })
+         .then(res => {
+           console.log(res.status,res);
+           console.log(res.data.response);
+             if(res.data.status == 200){
+               alert("sucess");
+             }
+           });
+
        }
       // delete(event)
       // {
